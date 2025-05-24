@@ -1,8 +1,3 @@
-/* import capitalize from '../src/capitalize';
-import reverseString from '../src/reverseString';
-import calculator from '../src/calculator';
-import caesarCipher from '../src/caesarCipher';
-import analyzeArray from '../src/analyzeArray'; */
 
 export function capitalize(string) {
     if (typeof string !== 'string') {
@@ -42,4 +37,25 @@ export function caesarCipher(string, shift) {
         }
         return char;
     }).join('');
+}
+
+export function analyzeArray(array) {
+    if (!Array.isArray(array)) {
+        throw new TypeError('Input must be an array');
+    }
+    if (array.length === 0) {
+        return {};
+    }
+
+    const sum = array.reduce((acc, num) => acc + num, 0);
+    const average = sum / array.length;
+    const min = Math.min(...array);
+    const max = Math.max(...array);
+
+    return {
+        average: average,
+        min: min,
+        max: max,
+        length: array.length
+    };
 }

@@ -13,11 +13,31 @@ export function reverseString(string) {
     return string.split('').reverse().join('');
 }
 export function calculator() {
+    function validateInputs(a, b) {
+        if (typeof a !== 'number' || typeof b !== 'number') {
+            throw new TypeError('Inputs must be numbers');
+        }
+    }
     return {
-        add: (a, b) => a + b,
-        subtract: (a, b) => a - b,
-        divide: (a, b) => a / b,
-        multiply: (a, b) => a * b
+        add: (a, b) => {
+            validateInputs(a, b);
+            return a + b;
+        },
+        subtract: (a, b) => {
+            validateInputs(a, b);
+            return a - b;
+        },
+        divide: (a, b) => {
+            validateInputs(a, b);
+            if (b === 0) {
+                throw new Error('Cannot divide by zero');
+            }
+            return a / b;
+        },
+        multiply: (a, b) => {
+            validateInputs(a, b);
+            return a * b;
+        }
     };
 }
 
@@ -33,7 +53,7 @@ export function caesarCipher(string, shift) {
         if (char.match(/[a-z]/i)) {
             const code = char.charCodeAt(0);
             const base = char.toLowerCase() === char ? 97 : 65;
-            return String.fromCharCode(((code - base + shift) % 26) + base);
+            return String.fromCharCode((((code - base + shift) % 26) + 26) % 26 + base);
         }
         return char;
     }).join('');

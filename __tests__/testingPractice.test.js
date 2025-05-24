@@ -78,7 +78,9 @@ describe("caesarCipher", () => {
     expect(caesarCipher("XYZ", 3)).toBe("ABC");
     expect(caesarCipher("XYZ", -3)).toBe("UVW");
     expect(caesarCipher("123", 3)).toBe("123");
-    expect(caesarCipher("!@#", 3)).
+    expect(caesarCipher("!@#", 3)).toBe("!@#");
+    expect(caesarCipher("Hello World!", 3)).toBe("Khoor Zruog!");
+    
   });
 });
 
